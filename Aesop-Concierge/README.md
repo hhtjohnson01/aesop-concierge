@@ -1,6 +1,6 @@
-# BUCS MEAN
-This is the code that we looked during our faculty lecture on dogfooding. Note that to run this yourself you'll need to install the various dependencies in node_modules; they can be installed via `npm install`.
+# Aesop Concierge
+This is a beta, work-in-progress for the Aesop Concierge app. Current functionality includes listing partners and connecting to OpenTable in the Chicago area only.
+List of features to be added are: Consultant Favorites in modal (Randomized from DB), Database editing + authorization, Welcome screen with location select (set location to db city, state, Google maps instead of geolocation), Reservations Module (Add next/prev pages buttons, Search)
+
 ## Running
-To run, first clone the repo and install the Node componenets. Start mongoDB with `mongod&`, then run the app with `npm start`.
-## Slides
-The original slide set accompanying the talk are in the `docs` folder in PDF.
+Start mongoDB in Terminal, then run the app with at www.
