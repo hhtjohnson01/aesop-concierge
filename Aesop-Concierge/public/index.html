@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Aesop Concierge</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!--Latest Minified Angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link href="stylesheets/lux-bootstrap.css" rel="stylesheet">
+
+    <!--Controllers for this page/app -->
+    <script src="javascripts/controllers.js"></script>
+
+</head>
+
+<body id="page-top" ng-app="AesopConcierge" class="ng-scope">
+<!-- Navigation -->
+<a class="menu-toggle rounded" href="#">
+    <i class="fa fa-bars"></i>
+</a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a class="js-scroll-trigger" href="#page-top">Aesop</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#about">About</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#services">Services</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#reservations">Reservations</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#partnerTable">Partners</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#favorites">Consultant Favorites</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#edit">Edit Database</a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Header -->
+<header class="masthead d-flex">
+    <div class="container text-center my-auto">
+        <h1 class="mb-1">Aesop Concierge</h1>
+        <h3 class="mb-5">
+            <em>Aesop's City Guide and Concierge</em>
+        </h3>
+        <a class="btn btn-xl btn-outline-dark" href="#about">Find Out More</a>
+    </div>
+    <div class="overlay"></div>
+</header>
+
+<!-- About -->
+<section class="content-section bg-light" id="about">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h2> Simplify our role as host to all our guests.</h2>
+                <p class="lead mb-5">Aesop Concierge allows ease of use to track of all your city's consultants'
+                    recommendations.</p>
+                <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">What We Offer</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="content-section bg-primary text-white text-center" id="services">
+    <div class="container">
+        <div class="content-section-heading">
+            <h5 class="text-secondary mb-0">Services</h5>
+            <h6 class="mb-5">What We Offer</h6>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+            <span class="service-icon rounded-circle mx-auto mb-3">
+              <i class="icon-calendar"></i>
+            </span>
+                <h4>
+                    <a href="#reservations"><strong>Reservations</strong></a>
+                </h4>
+                <p class="text-faded mb-0">Make Reservations for Clients</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+            <span class="service-icon rounded-circle mx-auto mb-3">
+              <i class="icon-location-pin"></i>
+            </span>
+                <h4>
+                    <a href="#partnerTable"><strong>Partners</strong></a>
+                </h4>
+                <p class="text-faded mb-0">Easily Find Partners in Your City</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+            <span class="service-icon rounded-circle mx-auto mb-3">
+              <i class="icon-heart"></i>
+            </span>
+                <h4>
+                    <a href="#favorites"><strong>Favorites</strong></a>
+                </h4>
+                <p class="text-faded mb-0">View our Consultants' Favorites</p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+            <span class="service-icon rounded-circle mx-auto mb-3">
+              <i class="icon-info"></i>
+            </span>
+                <h4>
+                    <a href="#edit"><strong>Database</strong></a>
+                </h4>
+                <p class="text-faded mb-0">Edit our Database</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reservations -->
+<section id="reservations" class="callout" ng-controller="resCtrls">
+    <div class="container text-center" ng-show="!show">
+        <h2 class="mx-auto mb-5">Welcome to the Reservation Module.</h2>
+        <a class="btn btn-primary btn-xl" ng-click="show=!show">Click
+            to Begin</a>
+    </div>
+    <div class="container text-center bg-primary" ng-show="show">
+        <h2 class="mx-auto mb-5">Reservations</h2>
+        <a class="btn btn-primary btn-xl" ng-click="getAllRes()">View All</a>
+        <form class="form-inline my-2 my-lg-0" ng-submit="getResByName(searchName)">
+            <input class="form-control mr-sm-2" type="text" ng-model="searchName" placeholder="Search Restaurant">
+        </form>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-active" ng-repeat="rest in rests">
+                <td><a href={{rest.reserve_url}}>{{rest.name}}</a></td>
+                <td>{{rest.address}}, {{rest.city}}, {{rest.state}}</td>
+                <td>{{rest.phone}}</td>
+                <td>{{rest.price}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <button ng-click="pageDown()"><i class="icon-arrow-left"></i> </button>
+        <button ng-click="pageUp()"><i class="icon-arrow-right"></i> </button>
+    </div>
+</section>
+
+<!-- Favorites -->
+<section class="content-section" id="partnerTable" ng-controller="partnerCtrls" ng-init="getPartners()">
+    <div class="container">
+        <div class="content-section-heading text-center">
+            <h2 class="mb-5">Partners</h2>
+        </div>
+        <div>
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Neighborhood</th>
+                    <th scope="col">Phone Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-active" ng-repeat="partner in partners">
+                    <td>{{partner.name}}</td>
+                    <td>{{partner.Address}}</td>
+                    <td>{{partner.Neighborhood}}</td>
+                    <td>{{partner.Phone}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+<!-- Favorites -->
+<section class="content-section" id="favorites">
+    <div class="container">
+        <div class="content-section-heading text-center">
+            <h2 class="mb-5">Consultant Favorites</h2>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-6">
+                <a class="portfolio-item" data-toggle="modal" href="#testModal">
+              <span class="caption">
+                <span class="caption-content">
+                  <h5>Restaurants</h5>
+                  <p class="mb-0">View a selection of our favorite restaurants.</p>
+                </span>
+              </span>
+                    <img class="img-fluid" src="images/chairs-drinking-glasses-restaurant-67468.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h5>Stores</h5>
+                  <p class="mb-0">View stores with amazing products.</p>
+                </span>
+              </span>
+                    <img class="img-fluid" src="images/business-chinese-container-165228.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h5>Attractions</h5>
+                  <p class="mb-0">View your city's best attractions.</p>
+                </span>
+              </span>
+                    <img class="img-fluid" src="images/architecture-bones-building-236482.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <a class="portfolio-item" href="#">
+              <span class="caption">
+                <span class="caption-content">
+                  <h5>Bars</h5>
+                  <p class="mb-0">View our recommended drinking locations.</p>
+                </span>
+              </span>
+                    <img class="img-fluid" src="images/advertisement-advertising-font-308.jpg" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Location Drop Down
+<section ng-controller="storeCtrls" ng-init="getStores()">
+    <div class="form-group">
+        <select>
+            <option ng-repeat="store in stores">{{store.name}}</option>
+        </select>
+    </div>
+</section>
+--->
+
+<!-- Search Box
+<form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+--->
+
+<!-- Call to Action -->
+<section id="edit" class="content-section bg-primary text-white">
+    <div class="container text-center">
+        <h6 class="mb-4">Make Database Edits Below</h6>
+        <button type="button" class="btn btn-xl btn-light mr-4" data-toggle="collapse" data-target="#consultantedit">
+            Consultant Edit
+        </button>
+        <button type="button" class="btn btn-xl btn-outline-light" data-toggle="collapse" data-target="#partneredit">
+            Partner Edit
+        </button>
+        <div id="consultantedit" class="collapse container text-center" ng-controller="consultantCtrls">
+            <form class="form-inline" name="inputForm">
+                <div class="form-group">
+                    <label class="sr-only" for="formConName">Name</label>
+                    <input type="text" class="form-control" id="formConName" placeholder="Enter name" ng-model="name"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="formCity">City</label>
+                    <input type="text" class="form-control" id="formCity" placeholder="Enter City" ng-model="City"
+                           required>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-disabled="inputForm.$invalid"
+                        ng-click="createConsultant()">
+                    Create New Item
+                </button>
+            </form>
+            <div class="col-xs-12" style="height:30px;"></div>
+            <div class="well col-md-6">
+                <ul class="list-group">
+                    <li ng-controller="consultantCtrls" class="list-group-item largeText"
+                        ng-repeat="consultant in consultants">
+                        {{consultant.name}}
+                        <span ng-show="display"> {{consultant.City}}</span>
+                        <button class="btn btn-sm pull-right btn-danger" ng-click="deleteConsultant(consultant.name);">
+                            <span class="icon-trash"></span>
+                        </button>
+                        <button class="btn btn-sm pull-right btn-warning" ng-click="setConsultantUpdate(consultant);">
+                            <span class="icon-action-redo"></span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="partneredit" class="collapse container text-center" ng-controller="partnerCtrls">
+            <form class="form-inline" name="inputForm">
+                <div class="form-group">
+                    <label class="sr-only" for="formName">Name</label>
+                    <input type="text" class="form-control" id="formName" placeholder="Enter name" ng-model="name"
+                           required>
+                </div>
+                <div class="form-group">
+                    <select class="sr-only" id="formType" ng-model="type" required>
+                        <option selected="">Select Type</option>
+                        <option value="Restaurant">Restaurant</option>
+                        <option value="Store">Store</option>
+                        <option value="Attraction">Attraction</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="formAddress">Address</label>
+                    <input type="text" class="form-control" id="formAddress" placeholder="Enter Address"
+                           ng-model="Address"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="formNeighborhood">Neighborhood</label>
+                    <input type="text" class="form-control" id="formNeighborhood" placeholder="Enter Neighborhood"
+                           ng-model="Neighborhood">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="formPhone">Phone</label>
+                    <input type="text" class="form-control" id="formPhone" placeholder="Enter Phone Number"
+                           ng-model="Phone" required>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-disabled="inputForm.$invalid"
+                        ng-click="createPartner()">
+                    Create New Item
+                </button>
+            </form>
+            <div class="col-xs-12" style="height:30px;"></div>
+            <div class="well col-md-6">
+                <ul class="list-group">
+                    <li ng-controller="partnerCtrls" class="list-group-item largeText" ng-repeat="partner in partners">
+                        {{partner.name}}
+                        <span ng-show="display"> {{partner.Address}} {{partner.Neighborhood}} {{partner.Phone}}</span>
+                        <button class="btn btn-sm pull-right btn-danger" ng-click="deletePartner(partner.name);">
+                            <span class="icon-trash"></span>
+                        </button>
+                        <button class="btn btn-sm pull-right btn-warning" ng-click="setPartnerUpdate(partner);">
+                            <span class="icon-action-redo"></span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map -->
+<section id="map" class="map">
+    <div></div>
+</section>
+
+<!-- Footer -->
+<footer class="footer text-center">
+    <div class="container">
+        <ul class="list-inline mb-5">
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://www.aesop.com/us">
+                    <i class="icon-cursor"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/aesopskincare">
+                    <i class="icon-social-twitter"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white" href="https://www.instagram.com/aesopskincare/">
+                    <i class="icon-social-instagram"></i>
+                </a>
+            </li>
+        </ul>
+        <p class="text-muted small mb-0">Copyright &copy; Your Website 2018</p>
+    </div>
+
+    <div class="modal" id="testModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+
+<script>
+
+    let map;
+    let infoWindow;
+    let loc;
+
+    //Initializes the map, tinkering with Google's Try Me code for Geolocation and Places APIs.
+    function initMap() {
+
+        //Handles geolocation and finding locationList of the device. Permission must be granted for this.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+
+                loc = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                let myLocation = loc;
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: myLocation,
+                    zoom: 12
+                });
+                infoWindow = new google.maps.InfoWindow({
+                    map: map
+                });
+                infoWindow.setPosition(loc);
+                infoWindow.setContent('Location Found');
+                map.setCenter(loc);
+
+                //Places finds all the bars (because they could play a big MMA event) in a given radius.
+                let service = new google.maps.places.PlacesService(map);
+                service.nearbySearch({
+                    locationList: myLocation,
+                    radius: 10000,
+                    name: ['Aesop']
+                }, callback);
+            })
+        }
+    }
+
+    //Necessary Callback for places
+    function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (let i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+            }
+        }
+    }
+
+    //Creates all the nice markers on the map that are the results
+    function createMarker(place) {
+        let placeLoc = place.geometry.locationList;
+        let marker = new google.maps.Marker({
+            map: map,
+            position: placeLoc
+        });
+
+        service.getDetails(place.placeId, function (place) {
+            google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                    'Phone Number: ' + place.formatted_phone_number + '</strong><br>' + 'Address: ' + place.formatted_address + '</div>');
+                infoWindow.open(map, marker);
+            });
+        });
+    }
+
+    initMap();
+</script>
+
+<!----This is needed to execute the code for the map. Google api key abstracted away.---->
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initMap"
+        async defer></script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="javascripts/stylish-portfolio.min.js"></script>
+
+</body>
+
+</html>
